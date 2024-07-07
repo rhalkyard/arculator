@@ -74,6 +74,10 @@ fi
 
 AC_CHECK_LIB([pthread], [pthread_create])
 
+AC_CHECK_LIB([slirp], [slirp_new], [], \
+         [echo "You need to install libslirp." 
+         exit -1])
+
 build_macosx="no"
 build_linux="no"
 build_win="no"
