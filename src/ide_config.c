@@ -17,7 +17,7 @@ enum
 	ID_DRIVE_5
 };
 
-static int MAX_CYLINDERS = 1024;
+static int MAX_CYLINDERS = 4096;
 static int MAX_HEADS = 16;
 static int MIN_SECTORS = 1;
 static int MAX_SECTORS = 63;
@@ -509,7 +509,7 @@ static int config_drive(void *window_p, const struct podule_config_item_t *item,
 
 static void ide_podule_config_init(void *window_p)
 {
-	MAX_CYLINDERS = 1024;
+	MAX_CYLINDERS = 4096;
 	MAX_HEADS = 16;
 	MIN_SECTORS = 1;
 	MAX_SECTORS = 63;
