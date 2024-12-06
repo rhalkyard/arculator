@@ -9,7 +9,7 @@
 #include <wx/xrc/xmlres.h>
 #include "wx-hd_conf.h"
 
-static int MAX_CYLINDERS = 1024;
+static int MAX_CYLINDERS = 4096;
 static int MAX_HEADS = 16;
 static int MIN_SECTORS = 1;
 static int MAX_SECTORS = 63;
@@ -62,11 +62,11 @@ void HDConfDialog::OnOK(wxCommandEvent &event)
 	wxString temp_s;
 
 	temp_s = ((wxTextCtrl *)this->FindWindow(XRCID("IDC_EDIT_CYLINDERS")))->GetValue();
-	new_cylinders = atoi(temp_s);
+	new_cylinders = atoi(temp_s.mb_str());
 	temp_s = ((wxTextCtrl *)this->FindWindow(XRCID("IDC_EDIT_HEADS")))->GetValue();
-	new_heads = atoi(temp_s);
+	new_heads = atoi(temp_s.mb_str());
 	temp_s = ((wxTextCtrl *)this->FindWindow(XRCID("IDC_EDIT_SECTORS")))->GetValue();
-	new_sectors = atoi(temp_s);
+	new_sectors = atoi(temp_s.mb_str());
 
 	EndModal(1);
 }
@@ -89,7 +89,7 @@ void HDConfDialog::OnCHS(wxCommandEvent &event)
 	in_callback = true;
 
 	temp_s = ((wxTextCtrl *)this->FindWindow(XRCID("IDC_EDIT_CYLINDERS")))->GetValue();
-	cylinders = atoi(temp_s);
+	cylinders = atoi(temp_s.mb_str());
 	if (cylinders > MAX_CYLINDERS)
 	{
 		cylinders = MAX_CYLINDERS;
@@ -98,7 +98,7 @@ void HDConfDialog::OnCHS(wxCommandEvent &event)
 	}
 
 	temp_s = ((wxTextCtrl *)this->FindWindow(XRCID("IDC_EDIT_HEADS")))->GetValue();
-	heads = atoi(temp_s);
+	heads = atoi(temp_s.mb_str());
 	if (heads > MAX_HEADS)
 	{
 		heads = MAX_HEADS;
@@ -107,7 +107,7 @@ void HDConfDialog::OnCHS(wxCommandEvent &event)
 	}
 
 	temp_s = ((wxTextCtrl *)this->FindWindow(XRCID("IDC_EDIT_SECTORS")))->GetValue();
-	sectors = atoi(temp_s);
+	sectors = atoi(temp_s.mb_str());
 	if (sectors > MAX_SECTORS)
 	{
 		sectors = MAX_SECTORS;
@@ -142,7 +142,7 @@ void HDConfDialog::OnSize(wxCommandEvent &event)
 	in_callback = true;
 
 	temp_s = ((wxTextCtrl *)this->FindWindow(XRCID("IDC_EDIT_SIZE")))->GetValue();
-	size = atoi(temp_s);
+	size = atoi(temp_s.mb_str());
 	if (size > MAX_SIZE)
 	{
 		size = MAX_SIZE;
@@ -176,7 +176,7 @@ int ShowConfHD(wxWindow *parent, int *new_sectors, int *new_heads, int *new_cyli
 	}
 	else
 	{
-		MAX_CYLINDERS = 1024;
+		MAX_CYLINDERS = 4096;
 		MAX_HEADS = 16;
 		MIN_SECTORS = 1;
 		MAX_SECTORS = 63;
