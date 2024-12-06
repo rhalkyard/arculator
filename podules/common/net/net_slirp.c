@@ -1,6 +1,7 @@
 #include <slirp/libslirp.h>
 #include <pthread.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "net.h"
 #include "net_slirp.h"
