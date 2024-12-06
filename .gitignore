@@ -7,12 +7,23 @@
 *.lo
 *.so
 .libs/
+libtool
+INSTALL
 
 src/wx-resources.cc
 
+arculator
 /configs/
 /cmos/
 /hostfs/
+roms/
+modules.dmp
+*.rom
+*.ROM
+scsirom
+*log.txt
+*.cfg
+*.hdf
 
 # http://www.gnu.org/software/automake
 
