@@ -16,11 +16,7 @@ arculator
 /configs/
 /cmos/
 /hostfs/
-roms/
 modules.dmp
-*.rom
-*.ROM
-scsirom
 *log.txt
 *.cfg
 *.hdf
