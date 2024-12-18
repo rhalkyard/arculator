@@ -146,6 +146,8 @@ void net_slirp_close(net_t *net)
 	net_slirp_t *slirp = net->p;
 
 	slirp->exit_poll = 1;
+	pthread_join(slirp->poll_thread, NULL);
+
 	slirp_cleanup(slirp->slirp);
 
 	free(slirp);
