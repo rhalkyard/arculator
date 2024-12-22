@@ -1,5 +1,6 @@
 #include <slirp/libslirp.h>
 #include <pthread.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -230,6 +231,7 @@ SlirpCb callbacks = {
 
 net_t *slirp_net_init(void)
 {
+	int rc;
 	net_t *net = malloc(sizeof(*net));
 	net_slirp_t *slirp = malloc(sizeof(*slirp));
 
@@ -258,6 +260,13 @@ net_t *slirp_net_init(void)
 	config.disable_host_loopback = 0;
 
 	slirp->slirp = slirp_new(&config, &callbacks, slirp);
+
+	struct in_addr hostaddr = {.s_addr = INADDR_ANY };
+	rc = slirp_add_hostfwd(slirp->slirp, true, hostaddr, 32768,
+			       config.vdhcp_start, 32768);
+	if (rc != 0) {
+		printf("Could not forward port 32768 - AUN will not function\n");
+	}
 
 	net->close = net_slirp_close;
 	net->read = net_slirp_read;
